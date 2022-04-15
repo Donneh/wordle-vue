@@ -1,20 +1,20 @@
-<script setup lang="ts">
-import {Tile} from "../../domain/Tile";
+<script setup lang='ts'>
+import { Tile } from '../../domain/Tile'
 
 const props = defineProps({
-    tile: Tile
-});
+    tile: Tile,
+})
 </script>
 
 <template>
-    <div class="tile" :class="tile.feedback">
+    <div class='tile' :class='tile.feedback'>
         {{ tile.letter }}
     </div>
 </template>
 
-<style>
+<style scoped>
 .tile {
-    @apply h-16 w-16 text-center flex justify-center items-center bg-slate-400 rounded hover:bg-slate-500 focus-visible:outline-none text-xl;
+    @apply h-16 w-16 text-center hover:brightness-125 flex justify-center items-center bg-slate-400 rounded focus-visible:outline-none text-xl;
 }
 
 .absent {

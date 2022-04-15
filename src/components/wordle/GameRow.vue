@@ -2,13 +2,13 @@
 import GameTile from "./GameTile.vue";
 
 const props = defineProps({
-    row: Array
+    row: Array,
 });
 
 </script>
 
 <template>
-    <div class="flex gap-x-2">
+    <div class="flex gap-x-2 items-center">
         <GameTile v-for="tile in row" :tile="tile"/>
     </div>
 </template>
