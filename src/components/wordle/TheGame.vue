@@ -1,13 +1,19 @@
 <script setup lang="ts">
-
 import GameRow from "./GameRow.vue";
+import {Game} from "../../domain/Game";
+import {reactive} from "vue";
+import GameMessage from './GameMessage.vue';
 
-let guesses = 5;
-let wordLength = 5;
+const game = reactive(new Game())
+
 </script>
 
 <template>
-    <div id="game" class="grid bg-slate-400 rounded" :class="'grid-cols-' + [guesses]">
-        <GameRow v-for="guess in guesses" :wordLength="wordLength"/>
+
+    <GameMessage :message="game.message"/>
+
+    <div id="game" class="grid gap-y-2 uppercase" @keydown="game.keyInput($event)" tabindex="0">
+
+        <GameRow v-for="row in game.board" :row="row"/>
     </div>
 </template>

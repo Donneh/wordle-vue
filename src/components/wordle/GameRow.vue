@@ -2,11 +2,13 @@
 import GameTile from "./GameTile.vue";
 
 const props = defineProps({
-    wordLength: Number
+    row: Array
 });
 
 </script>
 
 <template>
-    <GameTile :wordLength="props.wordLength"/>
+    <div class="flex gap-x-2">
+        <GameTile v-for="tile in row" :tile="tile"/>
+    </div>
 </template>
