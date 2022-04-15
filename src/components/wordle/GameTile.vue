@@ -2,7 +2,10 @@
 import { Tile } from '../../domain/Tile'
 
 const props = defineProps({
-    tile: Tile,
+    tile: {
+        type: Tile,
+        required: true
+    }
 })
 </script>
 

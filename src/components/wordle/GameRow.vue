@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import GameTile from "./GameTile.vue";
+import { PropType } from 'vue'
+import { Tile } from '../../domain/Tile'
 
 const props = defineProps({
-    row: Array,
+    row: Array as PropType<Array<Tile>>,
 });
 
 </script>
