@@ -11,7 +11,7 @@ const game = reactive(new Game())
 </script>
 
 <template>
-
+    <h1>Test</h1>
     <div>
         <GameMessage :message="game.message"/>
 
