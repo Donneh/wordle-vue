@@ -1,6 +1,6 @@
 {
-  "name": "wordle",
-  "version": "0.1.0",
+  "name": "WordGuesser",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
