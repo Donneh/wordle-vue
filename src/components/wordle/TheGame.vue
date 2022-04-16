@@ -11,14 +11,12 @@ const game = reactive(new Game())
 </script>
 
 <template>
-    <div class="min-h-screen h-full flex flex-col items-center justify-between py-4">
+    <div class="min-h-screen h-full flex flex-col items-center justify-around py-4">
 
-        <div></div>
+        <section class='flex flex-col '>
 
-        <section>
             <GameMessage :message="game.message"/>
-
-            <div id="game" class="grid gap-y-2 uppercase mb-16" @keydown="game.keyInput($event.key)" tabindex="0">
+            <div id="game" class="grid gap-y-2 uppercase" @keydown="game.keyInput($event.key)" tabindex="0">
                 <GameRow v-for="row in game.board" :row="row" />
             </div>
         </section>

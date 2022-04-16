@@ -10,7 +10,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="flex gap-x-2 items-center">
+    <div class="flex gap-x-2 items-center justify-center max-w-full w-screen px-8">
         <GameTile v-for="tile in row" :tile="tile"/>
     </div>
 </template>
