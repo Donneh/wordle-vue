@@ -22,7 +22,7 @@ export class Tile {
     }
 
     set letter(value: string) {
-        this._letter = value
+        this._letter = value.toLowerCase()
     }
 
     get position(): number {

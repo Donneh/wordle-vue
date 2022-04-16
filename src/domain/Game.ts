@@ -17,6 +17,7 @@ export class Game {
     constructor() {
         this._board = this._createBoard()
         this._virtualKeyboard = new Keyboard()
+        console.log(this.theWord)
     }
 
     get currentRow() {
@@ -113,6 +114,7 @@ export class Game {
     }
 
     private makeGuess() {
+        console.log(this.currentGuess)
         if (this.currentGuess.length < this.theWord.length) {
             return (this.message = '')
         }

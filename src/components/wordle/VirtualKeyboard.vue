@@ -1,5 +1,6 @@
 <script setup>
 import { Game } from '../../domain/Game'
+import { onMounted } from 'vue'
 
 const props = defineProps({
     game: Game
