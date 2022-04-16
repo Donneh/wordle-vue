@@ -11,14 +11,19 @@ const game = reactive(new Game())
 </script>
 
 <template>
-    <h1>Test</h1>
-    <div>
-        <GameMessage :message="game.message"/>
+    <div class="min-h-screen h-full flex flex-col items-center justify-between py-4">
 
-        <div id="game" class="grid gap-y-2 uppercase mb-16" @keydown="game.keyInput($event)" tabindex="0">
-            <GameRow v-for="row in game.board" :row="row" />
-        </div>
+        <div></div>
+
+        <section>
+            <GameMessage :message="game.message"/>
+
+            <div id="game" class="grid gap-y-2 uppercase mb-16" @keydown="game.keyInput($event.key)" tabindex="0">
+                <GameRow v-for="row in game.board" :row="row" />
+            </div>
+        </section>
+
+        <VirtualKeyboard :game='game'/>
     </div>
 
-    <VirtualKeyboard :keyboard='game.virtualKeyboard'/>
 </template>

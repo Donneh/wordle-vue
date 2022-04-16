@@ -1,22 +1,35 @@
 <script setup>
-import { Keyboard } from '../../domain/Keyboard'
+import { Game } from '../../domain/Game'
 
 const props = defineProps({
-    keyboard: Keyboard,
+    game: Game
 })
 
 </script>
 
 <template>
-    <section>
-        <div v-for='row in keyboard.layout' class='grid grid-cols-10 gap-x-1'>
-            <div v-for='key in row' class='flex items-center justify-center rounded-lg mx-auto m-1 h-16 w-16 bg-blue-900'>
+    <section class='flex flex-col items-center gap-y-1 w-screen max-w-full touch-manipulation touch-pinch-zoom'>
+        <div v-for='row in game.virtualKeyboard.layout' class='gap-x-1 flex'>
+            <button v-for='key in row'
+                    @click='game.keyInput(key)'
+                    class='p-2 sm:p-6  rounded hover:bg-indigo-300 bg-indigo-200'
+                    :class='game.matchingTileForKey(key)?.feedback'>
                 {{ key }}
-            </div>
+            </button>
         </div>
     </section>
 </template>
 
 <style scoped>
+.absent {
+    @apply bg-rose-400
+}
 
+.present {
+    @apply bg-amber-400
+}
+
+.correct {
+    @apply bg-emerald-400
+}
 </style>

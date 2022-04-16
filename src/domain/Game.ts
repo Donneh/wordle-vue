@@ -1,12 +1,13 @@
 import { Tile } from './Tile'
 import { GameState } from './GameState'
-import words from './words'
+import words from '../data/5-letter-words'
 import { TileFeedback } from './TileFeedback'
 import { Keyboard } from './Keyboard'
 
 export class Game {
-    private readonly _guessesAllowed = 3
-    private readonly _theWord: string = 'att'
+    private readonly _guessesAllowed = 5
+    private readonly _theWord: string =
+        words[Math.floor(Math.random() * words.length)]
     private readonly _board: Array<Array<Tile>>
     private currentRowIndex = 0
     private state: GameState = GameState.Active
@@ -70,12 +71,22 @@ export class Game {
         })
     }
 
-    keyInput(event: KeyboardEvent) {
-        if (this.validateKeyInput(event.key)) {
-            this.fillTile(event)
-        } else if (event.key === 'Backspace') {
+    matchingTileForKey(key: string): Tile {
+        return this.board
+            .flat()
+            .filter((tile: Tile) => tile.feedback)
+            .sort((t1: Tile, t2: Tile) => {
+                return t2.feedback === TileFeedback.Correct ? 1 : -1
+            })
+            .find((tile: Tile) => tile.letter === key.toLowerCase())
+    }
+
+    keyInput(key: string) {
+        if (this.validateKeyInput(key)) {
+            this.fillTile(key)
+        } else if (key === 'Backspace') {
             this.emptyTile()
-        } else if (event.key === 'Enter') {
+        } else if (key === 'Enter') {
             this.makeGuess()
         }
     }
@@ -84,10 +95,10 @@ export class Game {
         return /^[A-z]$/.test(key)
     }
 
-    private fillTile(event: KeyboardEvent) {
+    private fillTile(letter: string) {
         for (let tile of this.currentRow) {
             if (!tile.letter) {
-                tile.letter = event.key
+                tile.letter = letter
                 break
             }
         }

@@ -2,7 +2,7 @@ export class Keyboard {
     private _layout: Array<Array<String>> = [
         'QWERTYUIOP'.split(''),
         'ASDFGHJKL'.split(''),
-        'ZXCVBNM'.split(''),
+        ['Enter', ...'ZXCVBNM'.split(''), 'Backspace'],
     ]
 
     get layout(): Array<Array<String>> {

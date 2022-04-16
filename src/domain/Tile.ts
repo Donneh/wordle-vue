@@ -37,31 +37,25 @@ export class Tile {
         this.letter = ''
     }
 
-    updateFeedback(theWord: string) {
-        if (!theWord.includes(this.letter)) {
-            return (this.feedback = TileFeedback.Absent)
-        }
-
-        if (this.letter === theWord[this.position]) {
-            return (this.feedback = TileFeedback.Correct)
-        }
-
-        return (this.feedback = TileFeedback.Present)
-    }
-
     static updateFeedbackForRow(row: Array<Tile>, theWord: string) {
+        let theWordArray = theWord.split('')
+
         for (const tile of row) {
-            tile.updateFeedback(theWord)
+            if (theWordArray[tile.position] === tile.letter) {
+                tile.feedback = TileFeedback.Correct
+                theWordArray[tile.position] = ''
+            }
         }
 
-        row.filter((tile) => tile.feedback === TileFeedback.Present)
-            .filter((tile) =>
-                row.some(
-                    (t: Tile) =>
-                        t.letter === tile.letter &&
-                        tile.feedback === TileFeedback.Correct
-                )
-            )
-            .forEach((tile: Tile) => (tile.feedback = TileFeedback.Absent))
+        for (const tile of row) {
+            if (theWordArray.includes(tile.letter)) {
+                tile.feedback = TileFeedback.Present
+                theWordArray[theWordArray.indexOf(tile.letter)] = ''
+            }
+        }
+
+        for (const tile of row.filter((tile) => !tile.feedback)) {
+            tile.feedback = TileFeedback.Absent
+        }
     }
 }
