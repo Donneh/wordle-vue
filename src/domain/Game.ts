@@ -132,7 +132,7 @@ export class Game {
         }
         if (this.remainingGuesses === 0) {
             this.state = GameState.Complete
-            return (this.message = 'Game over, you lose!')
+            return (this.message = 'Game over, the word was: ' + this.theWord)
         }
 
         this.currentRowIndex++
