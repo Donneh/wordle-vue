@@ -17,7 +17,6 @@ export class Game {
     constructor() {
         this._board = this._createBoard()
         this._virtualKeyboard = new Keyboard()
-        console.log(this.theWord)
     }
 
     get currentRow() {
@@ -83,12 +82,14 @@ export class Game {
     }
 
     keyInput(key: string) {
-        if (this.validateKeyInput(key)) {
-            this.fillTile(key)
-        } else if (key === 'Backspace') {
-            this.emptyTile()
-        } else if (key === 'Enter') {
-            this.makeGuess()
+        if (this.state !== GameState.Complete) {
+            if (this.validateKeyInput(key)) {
+                this.fillTile(key)
+            } else if (key === 'Backspace') {
+                this.emptyTile()
+            } else if (key === 'Enter') {
+                this.makeGuess()
+            }
         }
     }
 
@@ -135,6 +136,7 @@ export class Game {
         }
 
         this.currentRowIndex++
+
         return (this.message = 'Incorrect')
     }
 }

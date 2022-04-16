@@ -39,7 +39,6 @@ export class Tile {
 
     static updateFeedbackForRow(row: Array<Tile>, theWord: string) {
         let theWordArray = theWord.split('')
-
         for (const tile of row) {
             if (theWordArray[tile.position] === tile.letter) {
                 tile.feedback = TileFeedback.Correct
@@ -47,7 +46,7 @@ export class Tile {
             }
         }
 
-        for (const tile of row) {
+        for (const tile of row.filter((tile) => !tile.feedback)) {
             if (theWordArray.includes(tile.letter)) {
                 tile.feedback = TileFeedback.Present
                 theWordArray[theWordArray.indexOf(tile.letter)] = ''
