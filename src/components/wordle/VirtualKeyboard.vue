@@ -13,7 +13,7 @@ const props = defineProps({
         <div v-for='row in game.virtualKeyboard.layout' class='gap-x-1 flex'>
             <button v-for='key in row'
                     @click='game.keyInput(key)'
-                    class='p-2 sm:p-6  rounded hover:bg-indigo-300 bg-indigo-200'
+                    class='p-2 sm:p-6  rounded hover:bg-blend-darken bg-indigo-200'
                     :class='game.matchingTileForKey(key)?.feedback'>
                 {{ key }}
             </button>
